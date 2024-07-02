@@ -1,0 +1,9 @@
+<h1>Yelp restaurants</h1>
+<div class="d-flex w-25 gap-10">
+  <ul class="list-group">
+  <% @restaurants.each do |restaurant| %>
+    <li class="list-group-item"><%= restaurant.name %></li>
+    <%= link_to "See details", restaurant_path(restaurant), class: "btn btn-primary"%>
+  <% end %>
+  </ul>
+</div>
