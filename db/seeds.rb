@@ -10,8 +10,17 @@
 
 puts "creating 5 new restaurants"
 
-5.times do
-  Restaurant.create(name: Faker::Restaurant.name, category: ["chinese", "italian", "japanese", "french", "belgian"].sample, address: Faker::Address.street_address)
+10.times do
+  Restaurant.create(name: Faker::Restaurant.name, category: ["chinese", "italian", "japanese", "french", "belgian"].sample, address: Faker::Address.street_address, phone_number: Faker::PhoneNumber.phone_number)
 end
 
 puts "there are now #{Restaurant.count} restaurants"
+
+puts "creating random reviews"
+
+50.times do
+  review_for = Restaurant.all.sample
+  new_review = Review.new(rating: (0..5).to_a.sample, content: Faker::Restaurant.review)
+  new_review.restaurant = review_for
+  new_review.save
+end
